@@ -1,0 +1,30 @@
+{
+  "Monsters": 
+    [
+      {
+        "Name": "rust monster",
+        "HitPoints": 10,
+        "MaxNumberAllowed": 3
+      },
+      {
+        "Name": "goblins",
+        "HitPoints": 5,
+        "MaxNumberAllowed": 5
+      },
+      {
+        "Name": "gelatenous cube",
+        "HitPoints": 3,
+        "MaxNumberAllowed": 1
+      },
+      {
+        "Name": "skeletons",
+        "HitPoints": 2,
+        "MaxNumberAllowed": 10
+      },
+      {
+        "Name": "red dragon",
+        "HitPoints": 50,
+        "MaxNumberAllowed": 1
+      }
+    ]
+}

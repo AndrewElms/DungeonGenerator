@@ -1,4 +1,5 @@
 ﻿using System;
+using DungeonGenerator.Services;
 
 namespace DungeonGenerator
 {
@@ -8,7 +9,10 @@ namespace DungeonGenerator
         {
             var consolePresentationAdapter = new ConsolePresentationAdapter();
             var roomFactory = new RoomFactory();
-            var dungeonGenerator = new DungenonGeneratorService(consolePresentationAdapter, roomFactory);
+            var transformer = new RepositoryListTransformer();
+            var lootRepo = new LootRepository();
+            var monsterRepo = new MonsterRepository();
+            var dungeonGenerator = new DungenonGeneratorService(consolePresentationAdapter, roomFactory, transformer, lootRepo, monsterRepo);
 
             dungeonGenerator.Create();
         }

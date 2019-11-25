@@ -8,5 +8,6 @@ namespace DungeonGenerator
     {
         public string Name { get; set; }
         public int HitPoints { get; set; }
+        public int MaxNumberAllowed { get; set; }
     }
 }
