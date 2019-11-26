@@ -11,8 +11,8 @@ namespace DungeonGenerator
         public string MakeAStory(RoomModel room, LootModel loot, MonsterModel monster)
         {
             var story = $"You stand in a room {room.Width}' x {room.Length}'."
-                        +$"On the far side of the room you see a {monster.Name}, "
-                        +$"guarding a {loot.Description}";
+                        +$"On the far side of the room you see {if(monster.NumberOfMonsters==1, "a", monster.NumberOfMonsters)} {monster.Name}, "
+                        + $"guarding a {loot.Description}";
 
             return story;
         }

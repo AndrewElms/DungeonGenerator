@@ -1,6 +1,6 @@
 {
   "Monsters": 
-    [
+  [
       {
         "Name": "rust monster",
         "HitPoints": 10,
@@ -26,5 +26,5 @@
         "HitPoints": 50,
         "MaxNumberAllowed": 1
       }
-    ]
+  ]
 }

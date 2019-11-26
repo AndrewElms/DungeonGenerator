@@ -5,16 +5,20 @@ using System.Text;
 
 namespace DungeonGenerator
 {
-    class MonsterFactory
+    public class MonsterFactory
     {
         // Get a list of monster from the repository, randomly select one and return a monster model
 
-        public MonsterModel GetMonster(List<MonsterModel> MonsterCollection)
+        public MonsterModel GetMonster(MonsterCollection monsterCollection)
         {
             Random random = new Random();
-            var randomIndex = random.Next(0, MonsterCollection.Count);
+            var randomIndex = random.Next(0, monsterCollection.Monsters.Count);
 
-            return MonsterCollection[randomIndex];
+            var selectedMonster = monsterCollection.Monsters[randomIndex];
+
+            selectedMonster.NumberOfMonsters = random.Next(1, selectedMonster.MaxNumberAllowed);
+
+            return selectedMonster;
         }
 
     }

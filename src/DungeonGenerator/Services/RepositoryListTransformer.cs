@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace DungeonGenerator.Services
 {
@@ -11,9 +12,9 @@ namespace DungeonGenerator.Services
         // It will be called on from the orchestration layer and take in the data from the IRepository classes
         // T will be MonsterModel or LootModel
             
-        public List<T> TransformJSON<T>(string jsonPayload)
+        public T TransformJSON<T>(string jsonPayload)
         {
-            return JsonConvert.DeserializeObject<List<T>>(jsonPayload);
+            return JsonConvert.DeserializeObject<T>(jsonPayload);
         }
     }
 }

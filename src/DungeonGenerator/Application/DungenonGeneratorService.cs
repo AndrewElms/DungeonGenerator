@@ -15,26 +15,52 @@ namespace DungeonGenerator
         private readonly RepositoryListTransformer _transformer;
         private readonly LootRepository _lootRepo;
         private readonly MonsterRepository _monsterRepo;
+        private readonly MonsterFactory _monsterFactory;
+        private readonly LootFactory _lootFactory;
+        private readonly StoryMaker _storyMaker;
 
-        public DungenonGeneratorService(ConsolePresentationAdapter presentationAdapter, RoomFactory roomFactory, RepositoryListTransformer transformer, LootRepository lootRepo, MonsterRepository monsterRepo)
+        public DungenonGeneratorService(
+            ConsolePresentationAdapter presentationAdapter,
+            RoomFactory roomFactory,
+            RepositoryListTransformer transformer,
+            LootRepository lootRepo,
+            MonsterRepository monsterRepo,
+            MonsterFactory monsterFactory,
+            LootFactory lootFactory,
+            StoryMaker storyMaker)
         {
             _presentationAdapter = presentationAdapter;
             _roomFactory = roomFactory;
             _transformer = transformer;
             _lootRepo = lootRepo;
             _monsterRepo = monsterRepo;
+            _monsterFactory = monsterFactory;
+            _lootFactory = lootFactory;
+            _storyMaker = storyMaker;
         }
 
         public void Create()
         {
-            var MonsterCollection = _monsterRepo.GetList();
-            var LootCollection = _lootRepo.GetList();
+            // Get the master lists of things like monsters and loot
+            var monsterData = _monsterRepo.GetList();
+            var lootData = _lootRepo.GetList();
 
+            // Create a randomly sized room
             var roomModel = _roomFactory.CreateRoom(10,10);
-            var Monsters = _transformer.TransformJSON<MonsterModel>(MonsterCollection);
-            var Loot = _transformer.TransformJSON<LootModel>(LootCollection);
 
-            _presentationAdapter.Print($"You stand in a room {roomModel.Width}' x {roomModel.Length}'.");
+            // Randomly select a single monster from the master monster list
+            var monsters = _transformer.TransformJSON<MonsterCollection>(monsterData);
+            var monster = _monsterFactory.GetMonster(monsters);
+
+            // Randomly select a single loot item from the master loot list
+            var loot = _transformer.TransformJSON<LootCollection>(lootData);
+            var lootItem = _lootFactory.GetLoot(loot);
+
+            // Use the story maker to combine these elements into a readable story
+            var story = _storyMaker.MakeAStory(roomModel, lootItem, monster);
+
+            // Output the story
+            _presentationAdapter.Print(story);
         }
     }
 }
