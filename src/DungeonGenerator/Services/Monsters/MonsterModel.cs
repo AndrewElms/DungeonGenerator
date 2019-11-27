@@ -15,5 +15,6 @@ namespace DungeonGenerator
         public int HitPoints { get; set; }
         public int NumberOfMonsters { get; set; }
         public int MaxNumberAllowed { get; set; }
+        public int XP { get; set; }
     }
 }
