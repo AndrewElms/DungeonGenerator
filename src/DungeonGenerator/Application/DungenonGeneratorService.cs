@@ -63,8 +63,7 @@ namespace DungeonGenerator
 
                 // Output the story
                 _presentationAdapter.Print(story);
-
-                Console.ReadLine();
+                
             }
         }
     }
