@@ -1,3 +1,3 @@
 # Dungeon Generator
 
-An exersice in clean code following the onion architecture model
+An exercise in clean code following the onion architecture model

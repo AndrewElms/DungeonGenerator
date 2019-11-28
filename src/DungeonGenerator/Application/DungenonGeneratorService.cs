@@ -45,22 +45,26 @@ namespace DungeonGenerator
             var monsterData = _monsterRepo.GetList();
             var lootData = _lootRepo.GetList();
 
-            // Create a randomly sized room
-            var roomModel = _roomFactory.CreateRoom(10,10);
+            while (true)
+            {
+                // Create a randomly sized room
+                var roomModel = _roomFactory.CreateRoom(10, 10);
 
-            // Randomly select a single monster from the master monster list
-            var monsters = _transformer.TransformJSON<MonsterCollection>(monsterData);
-            var monster = _monsterFactory.GetMonster(monsters);
+                // Randomly select a single monster from the master monster list
+                var monsters = _transformer.TransformJSON<MonsterCollection>(monsterData);
+                var monster = _monsterFactory.GetMonster(monsters);
 
-            // Randomly select a single loot item from the master loot list
-            var loot = _transformer.TransformJSON<LootCollection>(lootData);
-            var lootItem = _lootFactory.GetLoot(loot);
+                // Randomly select a single loot item from the master loot list
+                var loot = _transformer.TransformJSON<LootCollection>(lootData);
+                var lootItem = _lootFactory.GetLoot(loot);
 
-            // Use the story maker to combine these elements into a readable story
-            var story = _storyMaker.MakeAStory(roomModel, lootItem, monster);
+                // Use the story maker to combine these elements into a readable story
+                var story = _storyMaker.MakeAStory(roomModel, lootItem, monster);
 
-            // Output the story
-            _presentationAdapter.Print(story);
+                // Output the story
+                _presentationAdapter.Print(story);
+                
+            }
         }
     }
 }

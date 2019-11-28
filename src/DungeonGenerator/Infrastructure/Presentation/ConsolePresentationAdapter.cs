@@ -10,6 +10,7 @@ namespace DungeonGenerator
         public void Print(string roomDetails)
         {
             Console.WriteLine(roomDetails);
+            Console.ReadLine();
         }
     }
 }

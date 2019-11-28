@@ -6,11 +6,6 @@ namespace DungeonGenerator
 {
     public class RoomFactory : IRoom
     {
-        public RoomFactory()
-        {
-
-        }
-
         public RoomModel CreateRoom(int maxWidth, int maxLength)
         {
             Random random = new Random();
