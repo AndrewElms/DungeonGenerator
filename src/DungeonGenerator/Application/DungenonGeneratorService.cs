@@ -2,32 +2,36 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Hosting;
+using System.Threading;
+using System.Threading.Tasks;
+using DungeonGenerator.Infrastructure.Repository;
 
 namespace DungeonGenerator
 {
     // This is the orchestrator
     // Get Config file max width length settings
     // Get a Room object from the RoomFactory
-    public class DungenonGeneratorService
+    public class DungenonGeneratorService : IDungenonGeneratorService
     {
-        private readonly ConsolePresentationAdapter _presentationAdapter;
-        private readonly RoomFactory _roomFactory;
-        private readonly RepositoryListTransformer _transformer;
-        private readonly LootRepository _lootRepo;
-        private readonly MonsterRepository _monsterRepo;
-        private readonly MonsterFactory _monsterFactory;
-        private readonly LootFactory _lootFactory;
-        private readonly StoryMaker _storyMaker;
+        private readonly IPresentation _presentationAdapter;
+        private readonly IRoom _roomFactory;
+        private readonly IRepositoryListTransformer _transformer;
+        private readonly IRepository _lootRepo;
+        private readonly IRepository _monsterRepo;
+        private readonly IMonsterFactory _monsterFactory;
+        private readonly ILootFactory _lootFactory;
+        private readonly IStoryMaker _storyMaker;
 
         public DungenonGeneratorService(
-            ConsolePresentationAdapter presentationAdapter,
-            RoomFactory roomFactory,
-            RepositoryListTransformer transformer,
-            LootRepository lootRepo,
-            MonsterRepository monsterRepo,
-            MonsterFactory monsterFactory,
-            LootFactory lootFactory,
-            StoryMaker storyMaker)
+            IPresentation presentationAdapter,
+            IRoom roomFactory,
+            IRepositoryListTransformer transformer,
+            IRepository lootRepo,
+            IRepository monsterRepo,
+            IMonsterFactory monsterFactory,
+            ILootFactory lootFactory,
+            IStoryMaker storyMaker)
         {
             _presentationAdapter = presentationAdapter;
             _roomFactory = roomFactory;
@@ -48,7 +52,7 @@ namespace DungeonGenerator
             while (true)
             {
                 // Create a randomly sized room
-                var roomModel = _roomFactory.CreateRoom(10, 10);
+                var roomModel = _roomFactory.CreateRoom(10, 10);    // SMELL: Is specifying the max room size is 10x10 here adding domain logic in the application layer?
 
                 // Randomly select a single monster from the master monster list
                 var monsters = _transformer.TransformJSON<MonsterCollection>(monsterData);
@@ -63,7 +67,6 @@ namespace DungeonGenerator
 
                 // Output the story
                 _presentationAdapter.Print(story);
-                
             }
         }
     }

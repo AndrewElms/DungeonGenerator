@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DungeonGenerator
 {
-    public class LootFactory
+    public class LootFactory : ILootFactory
     {
         // Get a list of loot from the repository, randomly select one and return a loot model
 

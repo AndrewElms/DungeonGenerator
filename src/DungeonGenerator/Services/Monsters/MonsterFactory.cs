@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DungeonGenerator
 {
-    public class MonsterFactory
+    public class MonsterFactory : IMonsterFactory
     {
         // Get a list of monster from the repository, randomly select one and return a monster model
 

@@ -6,14 +6,14 @@ namespace DungeonGenerator
 {
     // This is the domain logic that knows how to make a story by combining a Room, Loot and Monster
     // Eventually this domain logic would also contain hit point attack calculators and other game mechanics
-    public class StoryMaker
+    public class StoryMaker : IStoryMaker
     {
         public string MakeAStory(RoomModel room, LootModel loot, MonsterModel monster)
         {
             var numberOfMonsters = (monster.NumberOfMonsters == 1) ? "a" : monster.NumberOfMonsters.ToString();
 
             var story = $"You stand in a room {room.Width}' x {room.Length}'.\n"
-                        +$"On the far side of the room you see {numberOfMonsters} {monster.Name}, \n"
+                        + $"On the far side of the room you see {numberOfMonsters} {monster.Name}, \n"
                         + $"guarding a {loot.Description}";
 
             return story;

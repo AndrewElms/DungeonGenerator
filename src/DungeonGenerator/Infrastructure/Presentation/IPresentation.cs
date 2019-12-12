@@ -2,6 +2,6 @@
 {
     public interface IPresentation
     {
-        public void Print(string roomDetails);
+        void Print(string roomDetails);
     }
 }
