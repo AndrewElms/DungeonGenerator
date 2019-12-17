@@ -7,9 +7,9 @@ namespace DungeonGenerator
     public class ConsolePresentationAdapter : IPresentation
     {
         // This class should be the presentation layer that in this instance can print the dungeon room details to the console
-        public void Print(string roomDetails)
+        public void Print(string story)
         {
-            Console.WriteLine(roomDetails);
+            Console.WriteLine(story);
             Console.ReadLine();
         }
     }

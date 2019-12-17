@@ -17,8 +17,7 @@ namespace DungeonGenerator
         private readonly IPresentation _presentationAdapter;
         private readonly IRoom _roomFactory;
         private readonly IRepositoryListTransformer _transformer;
-        private readonly IRepository _lootRepo;
-        private readonly IRepository _monsterRepo;
+        private readonly IRepository _Repo;
         private readonly IMonsterFactory _monsterFactory;
         private readonly ILootFactory _lootFactory;
         private readonly IStoryMaker _storyMaker;
@@ -27,8 +26,7 @@ namespace DungeonGenerator
             IPresentation presentationAdapter,
             IRoom roomFactory,
             IRepositoryListTransformer transformer,
-            IRepository lootRepo,
-            IRepository monsterRepo,
+            IRepository repo,
             IMonsterFactory monsterFactory,
             ILootFactory lootFactory,
             IStoryMaker storyMaker)
@@ -36,8 +34,7 @@ namespace DungeonGenerator
             _presentationAdapter = presentationAdapter;
             _roomFactory = roomFactory;
             _transformer = transformer;
-            _lootRepo = lootRepo;
-            _monsterRepo = monsterRepo;
+            _Repo = repo;
             _monsterFactory = monsterFactory;
             _lootFactory = lootFactory;
             _storyMaker = storyMaker;
@@ -46,8 +43,8 @@ namespace DungeonGenerator
         public void Create()
         {
             // Get the master lists of things like monsters and loot
-            var monsterData = _monsterRepo.GetList();
-            var lootData = _lootRepo.GetList();
+            var monsterData = _Repo.GetList(@"Monsters.json");   // SMELL: Should the file names be here?
+            var lootData = _Repo.GetList(@"Loot.json");          // SMELL: Should the file names be here?
 
             while (true)
             {

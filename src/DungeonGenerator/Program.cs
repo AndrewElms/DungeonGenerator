@@ -29,9 +29,7 @@ namespace DungeonGenerator
             services.AddSingleton<ILootFactory, LootFactory>();
 
             services.AddSingleton<IRepositoryListTransformer, RepositoryListTransformer>();
-
-            services.AddSingleton<IRepository, LootRepository>();
-            services.AddSingleton<IRepository, MonsterRepository>();
+            services.AddSingleton<IRepository, Repository>();
 
             services.AddSingleton<IStoryMaker, StoryMaker>();
 
