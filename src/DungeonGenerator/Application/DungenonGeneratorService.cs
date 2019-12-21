@@ -12,7 +12,7 @@ namespace DungeonGenerator
     // This is the orchestrator
     // Get Config file max width length settings
     // Get a Room object from the RoomFactory
-    public class DungenonGeneratorService : IDungenonGeneratorService
+    public class DungenonGeneratorService
     {
         private readonly IPresentation _presentationAdapter;
         private readonly IRoom _roomFactory;
