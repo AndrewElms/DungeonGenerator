@@ -25,7 +25,7 @@ namespace DungeonGenerator
         public int GetMaxRoomLength()
         {
             return int.Parse(ConfigurationManager.AppSettings[Constants.MaxRoomLength]);
-        }       
+        }
 
         private string ReadFile(string fileName)
         {

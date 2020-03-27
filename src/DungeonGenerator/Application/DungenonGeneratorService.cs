@@ -1,19 +1,16 @@
-﻿using DungeonGenerator.Infrastructure.Repository;
-using DungeonGenerator.Services;
-
-namespace DungeonGenerator
+﻿namespace DungeonGenerator
 {
-    // This is the orchestrator    
+    // This is the orchestrator
     public class DungenonGeneratorService
     {
-        private readonly IPresentation _presentationAdapter;        
+        private readonly IPresentation _presentationAdapter;
         private readonly IStoryMaker _storyMaker;
 
         public DungenonGeneratorService(
-            IPresentation presentationAdapter,            
+            IPresentation presentationAdapter,
             IStoryMaker storyMaker)
         {
-            _presentationAdapter = presentationAdapter;            
+            _presentationAdapter = presentationAdapter;
             _storyMaker = storyMaker;
         }
 
@@ -21,7 +18,7 @@ namespace DungeonGenerator
         {
             while (true)
             {
-                // Use the story maker to combine these elements into a readable story
+                // Use the story maker to combine elements into a readable story
                 var story = _storyMaker.MakeAStory();
                 // Output the story
                 _presentationAdapter.Print(story);

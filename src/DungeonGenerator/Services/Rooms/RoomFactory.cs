@@ -6,6 +6,7 @@ namespace DungeonGenerator
     public class RoomFactory : IRoom
     {
         private readonly IRepository _repo;
+
         public RoomFactory(IRepository repo)
         {
             _repo = repo;

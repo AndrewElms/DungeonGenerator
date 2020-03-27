@@ -1,35 +1,34 @@
 {
-  "Monsters": 
-  [
-      {
-        "Name": "rust monster",
-        "HitPoints": 10,
-        "MaxNumberAllowed": 3,
-        "XP":  10
-      },
-      {
-        "Name": "goblins",
-        "HitPoints": 5,
-        "MaxNumberAllowed": 5,
-        "XP":  8
-      },
-      {
-        "Name": "gelatenous cube",
-        "HitPoints": 3,
-        "MaxNumberAllowed": 1,
-        "XP":  6
-      },
-      {
-        "Name": "skeletons",
-        "HitPoints": 2,
-        "MaxNumberAllowed": 10,
-        "XP":  5
-      },
-      {
-        "Name": "red dragon",
-        "HitPoints": 50,
-        "MaxNumberAllowed": 1,
-        "XP": 100
-      }
+  "Monsters": [
+    {
+      "Name": "rust monster",
+      "HitPoints": 10,
+      "MaxNumberAllowed": 3,
+      "XP": 10
+    },
+    {
+      "Name": "goblins",
+      "HitPoints": 5,
+      "MaxNumberAllowed": 5,
+      "XP": 8
+    },
+    {
+      "Name": "gelatenous cube",
+      "HitPoints": 3,
+      "MaxNumberAllowed": 1,
+      "XP": 6
+    },
+    {
+      "Name": "skeletons",
+      "HitPoints": 2,
+      "MaxNumberAllowed": 10,
+      "XP": 5
+    },
+    {
+      "Name": "red dragon",
+      "HitPoints": 50,
+      "MaxNumberAllowed": 1,
+      "XP": 100
+    }
   ]
 }

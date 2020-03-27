@@ -1,25 +1,24 @@
 {
-  "Loot": 
-  [
-      {
-        "Description": "pile of gold coins",
-        "Value": 10
-      },
-      {
-        "Description": "sword",
-        "Value": 15
-      },
-      {
-        "Description": "shield",
-        "Value": 20
-      },
-      {
-        "Description": "ring",
-        "Value": 75
-      },
-      {
-        "Description": "gemstone",
-        "Value": 200
-      }
-  ]  
+  "Loot": [
+    {
+      "Description": "pile of gold coins",
+      "Value": 10
+    },
+    {
+      "Description": "sword",
+      "Value": 15
+    },
+    {
+      "Description": "shield",
+      "Value": 20
+    },
+    {
+      "Description": "ring",
+      "Value": 75
+    },
+    {
+      "Description": "gemstone",
+      "Value": 200
+    }
+  ]
 }

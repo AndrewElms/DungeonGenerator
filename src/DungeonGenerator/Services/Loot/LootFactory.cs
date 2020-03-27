@@ -1,8 +1,6 @@
 ﻿using DungeonGenerator.Infrastructure.Repository;
 using DungeonGenerator.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DungeonGenerator
 {
@@ -10,6 +8,7 @@ namespace DungeonGenerator
     {
         // Get a list of loot from the repository, randomly select one and return a loot model
         private readonly IRepositoryListTransformer _transformer;
+
         private readonly IRepository _repo;
 
         public LootFactory(IRepositoryListTransformer transformer, IRepository repo)

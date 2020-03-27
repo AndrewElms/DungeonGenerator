@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using DungeonGenerator.Infrastructure.Repository;
+﻿using DungeonGenerator.Infrastructure.Repository;
 using DungeonGenerator.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace DungeonGenerator
 {
@@ -11,12 +9,12 @@ namespace DungeonGenerator
     {
         public static async Task Main(string[] args)
         {
-            // Following this example for how to add dot net core DI to console app 
+            // Following this example for how to add dot net core DI to console app
             // https://medium.com/swlh/how-to-take-advantage-of-dependency-injection-in-net-core-2-2-console-applications-274e50a6c350
 
             var services = ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
-            serviceProvider.GetService<DungenonGeneratorService>().Create();      
+            serviceProvider.GetService<DungenonGeneratorService>().Create();
         }
 
         public static IServiceCollection ConfigureServices()
@@ -36,7 +34,7 @@ namespace DungeonGenerator
             // Register our application entry point
             services.AddSingleton<DungenonGeneratorService>();
 
-            return services;         
+            return services;
         }
     }
 }
