@@ -2,6 +2,6 @@
 {
     public interface IMonsterFactory
     {
-        MonsterModel GetMonster(MonsterCollection monsterCollection);
+        MonsterModel GetRandomMonster();
     }
 }

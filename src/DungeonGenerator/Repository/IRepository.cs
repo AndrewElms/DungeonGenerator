@@ -6,6 +6,10 @@ namespace DungeonGenerator.Infrastructure.Repository
 {
     public interface IRepository
     {
-        string GetList(string jsonFile);
+        string GetMonsterList();
+        string GetLootList();
+
+        int GetMaxRoomLength();
+        int GetMaxRoomWidth();
     }
 }

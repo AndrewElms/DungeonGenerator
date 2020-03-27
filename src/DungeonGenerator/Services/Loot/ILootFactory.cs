@@ -2,6 +2,6 @@
 {
     public interface ILootFactory
     {
-        LootModel GetLoot(LootCollection lootCollection);
+        LootModel GetRandomLoot();
     }
 }

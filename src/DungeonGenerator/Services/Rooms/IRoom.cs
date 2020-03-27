@@ -6,6 +6,6 @@ namespace DungeonGenerator
 {
     public interface IRoom
     {
-        RoomModel CreateRoom(int maxWidth, int maxLength);
+        RoomModel CreateRandomSizedRoom();
     }
 }

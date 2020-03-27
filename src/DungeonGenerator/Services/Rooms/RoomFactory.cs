@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DungeonGenerator.Infrastructure.Repository;
+using System;
 
 namespace DungeonGenerator
 {
     public class RoomFactory : IRoom
     {
-        public RoomModel CreateRoom(int maxWidth, int maxLength)
+        private readonly IRepository _repo;
+        public RoomFactory(IRepository repo)
+        {
+            _repo = repo;
+        }
+
+        public RoomModel CreateRandomSizedRoom()
         {
             Random random = new Random();
-            var Room = new RoomModel();
-
-            Room.Width = random.Next(1, maxWidth);
-            Room.Length = random.Next(1, maxLength);
-
-            return Room;
+            return new RoomModel()
+            {
+                Width = random.Next(1, _repo.GetMaxRoomWidth()),
+                Length = random.Next(1, _repo.GetMaxRoomLength())
+            };
         }
     }
 }
