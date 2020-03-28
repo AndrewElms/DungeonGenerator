@@ -3,22 +3,22 @@ using System;
 
 namespace DungeonGenerator
 {
-    public class RoomFactory : IRoom
+    public class RoomFactory : IRoomFactory
     {
         private readonly IRepository _repo;
+        private readonly Random _random = new Random();
 
         public RoomFactory(IRepository repo)
         {
             _repo = repo;
         }
 
-        public RoomModel CreateRandomSizedRoom()
+        public RoomModel GetRandomSizedRoom()
         {
-            Random random = new Random();
             return new RoomModel()
             {
-                Width = random.Next(1, _repo.GetMaxRoomWidth()),
-                Length = random.Next(1, _repo.GetMaxRoomLength())
+                Width = _random.Next(1, _repo.GetMaxRoomWidth()),
+                Length = _random.Next(1, _repo.GetMaxRoomLength())
             };
         }
     }

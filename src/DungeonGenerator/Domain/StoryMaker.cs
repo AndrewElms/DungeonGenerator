@@ -4,11 +4,11 @@
     // Eventually this domain logic would also contain hit point attack calculators and other game mechanics
     public class StoryMaker : IStoryMaker
     {
-        private readonly IRoom _roomFactory;
+        private readonly IRoomFactory _roomFactory;
         private readonly IMonsterFactory _monsterFactory;
         private readonly ILootFactory _lootFactory;
 
-        public StoryMaker(IRoom roomFactory,
+        public StoryMaker(IRoomFactory roomFactory,
             IMonsterFactory monsterFactory,
             ILootFactory lootFactory)
         {
@@ -19,7 +19,7 @@
 
         public string MakeAStory()
         {
-            var roomModel = _roomFactory.CreateRandomSizedRoom();
+            var roomModel = _roomFactory.GetRandomSizedRoom();
 
             var monster = _monsterFactory.GetRandomMonster();
 

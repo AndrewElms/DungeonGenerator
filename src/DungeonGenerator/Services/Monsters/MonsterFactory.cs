@@ -10,6 +10,7 @@ namespace DungeonGenerator
         private readonly IRepositoryListTransformer _transformer;
 
         private readonly IRepository _repo;
+        private readonly Random _random = new Random();
 
         public MonsterFactory(IRepositoryListTransformer transformer, IRepository repo)
         {
@@ -19,14 +20,13 @@ namespace DungeonGenerator
 
         public MonsterModel GetRandomMonster()
         {
-            Random random = new Random();
             var monsterCollection = _transformer.TransformJSON<MonsterCollection>(_repo.GetMonsterList());
 
-            var randomIndex = random.Next(0, monsterCollection.Monsters.Count);
+            var randomIndex = _random.Next(0, monsterCollection.Monsters.Count);
 
             var selectedMonster = monsterCollection.Monsters[randomIndex];
 
-            selectedMonster.NumberOfMonsters = random.Next(1, selectedMonster.MaxNumberAllowed);
+            selectedMonster.NumberOfMonsters = _random.Next(1, selectedMonster.MaxNumberAllowed);
 
             return selectedMonster;
         }

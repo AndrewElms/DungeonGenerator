@@ -10,6 +10,7 @@ namespace DungeonGenerator
         private readonly IRepositoryListTransformer _transformer;
 
         private readonly IRepository _repo;
+        private readonly Random _random = new Random();
 
         public LootFactory(IRepositoryListTransformer transformer, IRepository repo)
         {
@@ -19,9 +20,8 @@ namespace DungeonGenerator
 
         public LootModel GetRandomLoot()
         {
-            Random random = new Random();
             var lootCollection = _transformer.TransformJSON<LootCollection>(_repo.GetLootList());
-            var randomIndex = random.Next(0, lootCollection.Loot.Count);
+            var randomIndex = _random.Next(0, lootCollection.Loot.Count);
 
             return lootCollection.Loot[randomIndex];
         }
