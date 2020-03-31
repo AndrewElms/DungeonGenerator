@@ -16,7 +16,7 @@ namespace DungeonGenerator
 
             var services = ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
-            serviceProvider.GetService<DungenonGeneratorService>().Create();      
+            serviceProvider.GetService<DungeonGeneratorService>().Create();
         }
 
         public static IServiceCollection ConfigureServices()
@@ -34,7 +34,7 @@ namespace DungeonGenerator
             services.AddSingleton<IStoryMaker, StoryMaker>();
 
             // Register our application entry point
-            services.AddSingleton<DungenonGeneratorService>();
+            services.AddSingleton<DungeonGeneratorService>();
 
             return services;         
         }

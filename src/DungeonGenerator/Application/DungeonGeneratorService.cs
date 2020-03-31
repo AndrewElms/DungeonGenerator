@@ -1,10 +1,4 @@
 ﻿using DungeonGenerator.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Hosting;
-using System.Threading;
-using System.Threading.Tasks;
 using DungeonGenerator.Infrastructure.Repository;
 
 namespace DungeonGenerator
@@ -12,7 +6,7 @@ namespace DungeonGenerator
     // This is the orchestrator
     // Get Config file max width length settings
     // Get a Room object from the RoomFactory
-    public class DungenonGeneratorService
+    public class DungeonGeneratorService
     {
         private readonly IPresentation _presentationAdapter;
         private readonly IRoom _roomFactory;
@@ -22,7 +16,7 @@ namespace DungeonGenerator
         private readonly ILootFactory _lootFactory;
         private readonly IStoryMaker _storyMaker;
 
-        public DungenonGeneratorService(
+        public DungeonGeneratorService(
             IPresentation presentationAdapter,
             IRoom roomFactory,
             IRepositoryListTransformer transformer,
@@ -57,7 +51,8 @@ namespace DungeonGenerator
 
                 // Randomly select a single loot item from the master loot list
                 var loot = _transformer.TransformJSON<LootCollection>(lootData);
-                var lootItem = _lootFactory.GetLoot(loot);
+                var lootIndex = RandomNumberService.GetRandomNumber(loot.Loot.Count);
+                var lootItem = _lootFactory.GetRandomLoot(loot, lootIndex);
 
                 // Use the story maker to combine these elements into a readable story
                 var story = _storyMaker.MakeAStory(roomModel, lootItem, monster);
