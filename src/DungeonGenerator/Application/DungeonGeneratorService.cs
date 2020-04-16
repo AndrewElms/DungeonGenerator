@@ -1,5 +1,6 @@
 ﻿using DungeonGenerator.Services;
 using DungeonGenerator.Infrastructure.Repository;
+using System;
 
 namespace DungeonGenerator
 {
@@ -20,25 +21,38 @@ namespace DungeonGenerator
             IPresentation presentationAdapter,
             IRoom roomFactory,
             IRepositoryListTransformer transformer,
-            IRepository repo,
+            IRepository repository,
             IMonsterFactory monsterFactory,
             ILootFactory lootFactory,
             IStoryMaker storyMaker)
         {
+            if (presentationAdapter == null) throw new ArgumentNullException("presentationAdapter");
             _presentationAdapter = presentationAdapter;
+
+            if (roomFactory == null) throw new ArgumentNullException("roomFactory");
             _roomFactory = roomFactory;
+
+            if (transformer == null) throw new ArgumentNullException("transformer");
             _transformer = transformer;
-            _Repo = repo;
+
+            if (repository == null) throw new ArgumentNullException("repository");
+            _Repo = repository;
+
+            if (monsterFactory == null) throw new ArgumentNullException("monsterFactory");
             _monsterFactory = monsterFactory;
+
+            if (lootFactory == null) throw new ArgumentNullException("lootFactory");
             _lootFactory = lootFactory;
+
+            if (storyMaker == null) throw new ArgumentNullException("storyMaker");
             _storyMaker = storyMaker;
         }
 
         public void Create()
         {
             // Get the master lists of things like monsters and loot
-            var monsterData = _Repo.GetList(@"Monsters.json");   // SMELL: Should the file names be here?
-            var lootData = _Repo.GetList(@"Loot.json");          // SMELL: Should the file names be here?
+            var monsterData = _Repo.GetList(@"Monsters.json");   // SMELL: Composition root says this should be done in program and come from app.Config // CHANGE: The repo call to getList<T> should return a collection of <T>, which could be MonsterModel
+            var lootData = _Repo.GetList(@"Loot.json");          // SMELL and CHANGE as above
 
             while (true)
             {
