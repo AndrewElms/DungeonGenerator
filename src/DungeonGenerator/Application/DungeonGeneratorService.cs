@@ -10,7 +10,7 @@ namespace DungeonGenerator
     public class DungeonGeneratorService
     {
         private readonly IPresentation _presentationAdapter;
-        private readonly IRoom _roomFactory;
+        private readonly IRoomFactory _roomFactory;
         private readonly IRepositoryListTransformer _transformer;
         private readonly IRepository _repository;
         private readonly IMonsterFactory _monsterFactory;
@@ -19,7 +19,7 @@ namespace DungeonGenerator
 
         public DungeonGeneratorService(
             IPresentation presentationAdapter,
-            IRoom roomFactory,
+            IRoomFactory roomFactory,
             IRepositoryListTransformer transformer,
             IRepository repository,
             IMonsterFactory monsterFactory,

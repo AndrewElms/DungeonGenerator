@@ -24,7 +24,7 @@ namespace DungeonGenerator
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<IPresentation, ConsolePresentationAdapter>();
 
-            services.AddSingleton<IRoom, RoomFactory>();
+            services.AddSingleton<IRoomFactory, RoomFactory>();
             services.AddSingleton<IMonsterFactory, MonsterFactory>();
             services.AddSingleton<ILootFactory, LootFactory>();
 

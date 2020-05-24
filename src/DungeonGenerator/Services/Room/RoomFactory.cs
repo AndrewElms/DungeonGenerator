@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DungeonGenerator
 {
-    public class RoomFactory : IRoom
+    public class RoomFactory : IRoomFactory
     {
         public RoomModel CreateRoom(int maxWidth, int maxLength)
         {
