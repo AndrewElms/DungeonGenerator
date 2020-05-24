@@ -12,7 +12,7 @@ namespace DungeonGenerator
         private readonly IPresentation _presentationAdapter;
         private readonly IRoom _roomFactory;
         private readonly IRepositoryListTransformer _transformer;
-        private readonly IRepository _Repo;
+        private readonly IRepository _repository;
         private readonly IMonsterFactory _monsterFactory;
         private readonly ILootFactory _lootFactory;
         private readonly IStoryMaker _storyMaker;
@@ -36,7 +36,7 @@ namespace DungeonGenerator
             _transformer = transformer;
 
             if (repository == null) throw new ArgumentNullException("repository");
-            _Repo = repository;
+            _repository = repository;
 
             if (monsterFactory == null) throw new ArgumentNullException("monsterFactory");
             _monsterFactory = monsterFactory;
@@ -51,8 +51,8 @@ namespace DungeonGenerator
         public void Create()
         {
             // Get the master lists of things like monsters and loot
-            var monsterData = _Repo.GetList(@"Monsters.json");   // SMELL: Composition root says this should be done in program and come from app.Config // CHANGE: The repo call to getList<T> should return a collection of <T>, which could be MonsterModel
-            var lootData = _Repo.GetList(@"Loot.json");          // SMELL and CHANGE as above
+            var monsterData = _repository.GetList(@"Monsters.json");   // SMELL: Composition root says this should be done in program and come from app.Config // CHANGE: The repo call to getList<T> should return a collection of <T>, which could be MonsterModel
+            var lootData = _repository.GetList(@"Loot.json");          // SMELL and CHANGE as above
 
             while (true)
             {
