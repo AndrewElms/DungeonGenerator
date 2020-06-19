@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DungeonGenerator
+﻿namespace DungeonGenerator
 {
     public interface IRoomFactory
     {
-        RoomModel CreateRoom(int maxWidth, int maxLength);
+        int MaxWidth { get; }
+        int MaxLength { get; }
+
+        RoomModel CreateRoom(int width, int length);
     }
 }

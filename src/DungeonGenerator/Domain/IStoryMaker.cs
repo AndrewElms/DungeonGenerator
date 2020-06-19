@@ -1,7 +1,9 @@
-﻿namespace DungeonGenerator
+﻿using DungeonGenerator.Services;
+
+namespace DungeonGenerator
 {
     public interface IStoryMaker
     {
-        string MakeAStory(RoomModel room, LootModel loot, MonsterModel monster);
+        string MakeAStory(IStoryElements storyElements);
     }
 }

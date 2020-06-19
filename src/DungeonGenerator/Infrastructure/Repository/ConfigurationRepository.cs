@@ -7,15 +7,15 @@ namespace DungeonGenerator
 {
     public class ConfigurationRepository
     {
-        public RoomModel GetMaxRoomDimensions()
-        {
-            var roomModel = new RoomModel();
+        //public RoomModel GetMaxRoomDimensions()
+        //{
+        //    var roomModel = new RoomModel();
 
-            roomModel.Width = int.Parse(ConfigurationManager.AppSettings["MaxRoomWidth"]);
-            roomModel.Length = int.Parse(ConfigurationManager.AppSettings["MaxRoomLength"]);
+        //    roomModel.Width = int.Parse(ConfigurationManager.AppSettings["MaxRoomWidth"]);
+        //    roomModel.Length = int.Parse(ConfigurationManager.AppSettings["MaxRoomLength"]);
 
-            return roomModel;
-        }
+        //    return roomModel;
+        //}
 
     }
 }

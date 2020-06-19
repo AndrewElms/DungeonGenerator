@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DungeonGenerator
 {
@@ -11,6 +9,19 @@ namespace DungeonGenerator
 
     public class MonsterModel
     {
+        public MonsterModel()
+        {
+        }
+
+        public MonsterModel(string name, int hitPoints, int numberOfMonsters, int  maxNumberAllowed, int xp)
+        {
+            Name = name;
+            HitPoints = hitPoints;
+            NumberOfMonsters = numberOfMonsters;
+            MaxNumberAllowed = maxNumberAllowed;
+            XP = xp;
+        }
+
         public string Name { get; set; }
         public int HitPoints { get; set; }
         public int NumberOfMonsters { get; set; }

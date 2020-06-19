@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using DungeonGenerator.Infrastructure.Repository;
 using DungeonGenerator.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -24,19 +26,20 @@ namespace DungeonGenerator
             IServiceCollection services = new ServiceCollection();
             services.AddSingleton<IPresentation, ConsolePresentationAdapter>();
 
+            services.AddSingleton<IRepository, Repository>();
+
             services.AddSingleton<IRoomFactory, RoomFactory>();
             services.AddSingleton<IMonsterFactory, MonsterFactory>();
             services.AddSingleton<ILootFactory, LootFactory>();
 
-            services.AddSingleton<IRepositoryListTransformer, RepositoryListTransformer>();
-            services.AddSingleton<IRepository, Repository>();
+            services.AddSingleton<IStoryElements, StoryElements>();
 
             services.AddSingleton<IStoryMaker, StoryMaker>();
 
             // Register our application entry point
             services.AddSingleton<DungeonGeneratorService>();
 
-            return services;         
-        }
+            return services;
+        }  
     }
 }

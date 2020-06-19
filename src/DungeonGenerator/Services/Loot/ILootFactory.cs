@@ -1,8 +1,9 @@
-﻿
-namespace DungeonGenerator
+﻿namespace DungeonGenerator
 {
     public interface ILootFactory
     {
-        LootModel GetRandomLoot(LootCollection lootCollection, int randomIndex);
+        int Count { get; }
+
+        LootModel GetLoot(int lootID);
     }
 }

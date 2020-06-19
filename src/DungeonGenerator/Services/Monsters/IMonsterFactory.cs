@@ -2,6 +2,8 @@
 {
     public interface IMonsterFactory
     {
-        MonsterModel GetMonster(MonsterCollection monsterCollection);
+        int Count { get; }
+
+        MonsterModel GetMonster(int monsterID);
     }
 }

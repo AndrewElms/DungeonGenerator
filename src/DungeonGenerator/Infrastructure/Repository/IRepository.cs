@@ -6,6 +6,7 @@ namespace DungeonGenerator.Infrastructure.Repository
 {
     public interface IRepository
     {
-        string GetList(string jsonFile);
+        MonsterCollection GetMonsterCollection();
+        LootCollection GetLootCollection();
     }
 }

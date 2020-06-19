@@ -4,16 +4,6 @@ namespace DungeonGenerator
 {
     public class LootCollection
     {
-
-        public LootCollection()
-        {
-        }
-
-        public LootCollection(List<LootModel> loot)
-        {
-            Loot = loot;
-        }
-
         public List<LootModel> Loot { get; set; }
     }
 

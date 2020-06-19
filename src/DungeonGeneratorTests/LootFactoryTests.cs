@@ -1,4 +1,6 @@
 ﻿using DungeonGenerator;
+using DungeonGenerator.Infrastructure.Repository;
+using Moq;
 using System.Collections.Generic;
 using Xunit;
 
@@ -12,16 +14,22 @@ namespace DungeonGeneratorTests
         [InlineData("Rusted shield", 2)]
         public void GetLoot_When_Called_Returns_A_Singular_Item_Decription_Of_Loot(string expected, int index)
         {
-            
-            List<LootModel> fakeLootList = new List<LootModel>();
-            fakeLootList.Add(new LootModel("A Shiny Thing", 10));
-            fakeLootList.Add(new LootModel("Money", 100));
-            fakeLootList.Add(new LootModel("Rusted shield", 1));
 
-            var  lootCollection = new LootCollection(fakeLootList);
+            LootCollection fakeLootCollection = new LootCollection();
 
-            var sut = new LootFactory();
-            var result = sut.GetRandomLoot(lootCollection, index);
+            var LootList = new List<LootModel>();
+                LootList.Add(new LootModel("A Shiny Thing", 10));
+                LootList.Add(new LootModel("Money", 100));
+                LootList.Add(new LootModel("Rusted shield", 1));
+            fakeLootCollection.Loot = LootList;
+
+            var mockRepository = new Mock<IRepository>();
+            mockRepository
+                .Setup(x => x.GetLootCollection())
+                .Returns(fakeLootCollection);
+          
+            var sut = new LootFactory(mockRepository.Object);
+            var result = sut.GetLoot(index);
 
             Assert.Equal(expected, result.Description);
         }
@@ -34,15 +42,22 @@ namespace DungeonGeneratorTests
         public void GetLoot_When_Called_Returns_A_Singular_Item_Value_Of_Loot(int expected, int index)
         {
 
-            List<LootModel> fakeLootList = new List<LootModel>();
-            fakeLootList.Add(new LootModel("A Shiny Thing", 10));
-            fakeLootList.Add(new LootModel("Money", 100));
-            fakeLootList.Add(new LootModel("Rusted shield", 1));
+            LootCollection fakeLootCollection = new LootCollection();
 
-            var lootCollection = new LootCollection(fakeLootList);
+            var LootList = new List<LootModel>();
+            LootList.Add(new LootModel("A Shiny Thing", 10));
+            LootList.Add(new LootModel("Money", 100));
+            LootList.Add(new LootModel("Rusted shield", 1));
+            fakeLootCollection.Loot = LootList;
 
-            var sut = new LootFactory();
-            var result = sut.GetRandomLoot(lootCollection, index);
+            var mockRepository = new Mock<IRepository>();
+            mockRepository
+                .Setup(x => x.GetLootCollection())
+                .Returns(fakeLootCollection);
+
+            var sut = new LootFactory(mockRepository.Object);
+
+            var result = sut.GetLoot(index);
 
             Assert.Equal(expected, result.Value);
         }

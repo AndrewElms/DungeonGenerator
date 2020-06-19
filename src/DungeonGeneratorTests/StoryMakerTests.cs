@@ -1,5 +1,9 @@
 using DungeonGenerator;
+using DungeonGenerator.Infrastructure.Repository;
+using DungeonGenerator.Services;
 using Moq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using Xunit;
 
 namespace DungeonGeneratorTests
@@ -9,47 +13,79 @@ namespace DungeonGeneratorTests
         [Fact]
         public void MakeAStory_When_Called_With_Story_Components_A_Single_Story_Is_Produced()
         {
-            var stubRoomModel = Mock.Of<RoomModel>();
-            stubRoomModel.Length = 1;
-            stubRoomModel.Width = 1;
+            LootCollection fakeLootCollection = new LootCollection();
+            var LootList = new List<LootModel>();
+            LootList.Add(new LootModel("Loot", 10));
+            fakeLootCollection.Loot = LootList;
 
-            var stubLootModel = Mock.Of<LootModel>();
-            stubLootModel.Description = "Loot";
+            var mockLootRepository = new Mock<IRepository>();
+            mockLootRepository
+                .Setup(x => x.GetLootCollection())
+                .Returns(fakeLootCollection);
 
-            var stubMonsterModel = Mock.Of<MonsterModel>();
-            stubMonsterModel.NumberOfMonsters = 10;
-            stubMonsterModel.Name = "Monsters";    
+
+            var fakeMonsterCollection = new MonsterCollection();
+            var monsterList = new List<MonsterModel>();
+            monsterList.Add(new MonsterModel("Monster", 1, 1, 1, 10));
+            fakeMonsterCollection.Monsters = monsterList;
+
+            var mockMonsterRepository = new Mock<IRepository>();
+            mockMonsterRepository
+                    .Setup(x => x.GetMonsterCollection())
+                    .Returns(fakeMonsterCollection);
+
+            var stubStoryElements = new StoryElements(
+                new MonsterFactory(mockMonsterRepository.Object),
+                new LootFactory(mockLootRepository.Object),
+                new RoomFactory(1, 1));
+            stubStoryElements.CreateStoryElements();
 
             var sut = new DungeonGenerator.StoryMaker();
-
-            var storyResult = sut.MakeAStory(stubRoomModel, stubLootModel, stubMonsterModel);
+            var storyResult = sut.MakeAStory(stubStoryElements);
 
             var TestStory = $"You stand in a room 1' x 1'.\n"
-                        + $"On the far side of the room you see 10 Monsters, \n"
+                        + $"On the far side of the room you see a Monster, \n"
                         + $"guarding a Loot";
 
             Assert.Equal(TestStory, storyResult);
         }
 
+
         [Fact]
-        public void MakeAStory_When_Called_A_Single_Monster_The_Singluar_Joining_Word_Will_Be_Used()
+        public void MakeAStory_When_Called_With_A_Single_Monster_The_Singluar_Joining_Word_Will_Be_Used()
         {
-            var stubRoomModel = Mock.Of<RoomModel>();
-            stubRoomModel.Length = 1;
-            stubRoomModel.Width = 1;
 
-            var stubLootModel = Mock.Of<LootModel>();
-            stubLootModel.Description = "Loot";
+            LootCollection fakeLootCollection = new LootCollection();
+            var LootList = new List<LootModel>();
+            LootList.Add(new LootModel("Loot", 10));
+            fakeLootCollection.Loot = LootList;
 
-            var stubMonsterModel = Mock.Of<MonsterModel>();
-            stubMonsterModel.NumberOfMonsters = 1;
-            stubMonsterModel.Name = "Monster";
+            var mockLootRepository = new Mock<IRepository>();
+            mockLootRepository
+                .Setup(x => x.GetLootCollection())
+                .Returns(fakeLootCollection);
 
-            var sut = new DungeonGenerator.StoryMaker();
 
-            var storyResult = sut.MakeAStory(stubRoomModel, stubLootModel, stubMonsterModel);
+            var fakeMonsterCollection = new MonsterCollection();
+            var monsterList = new List<MonsterModel>();
+            monsterList.Add(new MonsterModel("Monster", 1, 1, 1, 10));
+            fakeMonsterCollection.Monsters = monsterList;
 
-            Assert.True(storyResult.Contains("a Monster"));
+            var mockMonsterRepository = new Mock<IRepository>();
+            mockMonsterRepository
+                    .Setup(x => x.GetMonsterCollection())
+                    .Returns(fakeMonsterCollection);
+
+            var stubStoryElements = new StoryElements(
+                new MonsterFactory(mockMonsterRepository.Object), 
+                new LootFactory(mockLootRepository.Object), 
+                new RoomFactory(10,10));
+            stubStoryElements.CreateStoryElements();
+
+            var sut = new StoryMaker();
+            var storyResult = sut.MakeAStory(stubStoryElements);
+
+            Assert.Contains("a Monster", storyResult);
         }
-}
+    }
 }

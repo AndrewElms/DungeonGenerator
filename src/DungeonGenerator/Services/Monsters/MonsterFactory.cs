@@ -1,21 +1,27 @@
-﻿using DungeonGenerator.Services;
+﻿using DungeonGenerator.Infrastructure.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DungeonGenerator
 {
     public class MonsterFactory : IMonsterFactory
     {
-        // Get a list of monster from the repository, randomly select one and return a monster model
+        private readonly MonsterCollection monsterCollection;
+        public int Count { get; }
 
-        public MonsterModel GetMonster(MonsterCollection monsterCollection)
+        public MonsterFactory(IRepository repository)
         {
-            Random random = new Random();
-            var randomIndex = random.Next(0, monsterCollection.Monsters.Count);
+            if (repository == null)
+                throw new ArgumentNullException("A monster repository must be supplied");
 
-            var selectedMonster = monsterCollection.Monsters[randomIndex];
+            this.monsterCollection = repository.GetMonsterCollection();
+            Count = monsterCollection.Monsters.Count;
+        }
 
+        public MonsterModel GetMonster(int monsterID)
+        {
+            var selectedMonster = monsterCollection.Monsters[monsterID];            
+            
+            var random = new Random();
             selectedMonster.NumberOfMonsters = random.Next(1, selectedMonster.MaxNumberAllowed);
 
             return selectedMonster;
